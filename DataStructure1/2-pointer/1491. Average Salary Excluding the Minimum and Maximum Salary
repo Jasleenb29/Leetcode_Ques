@@ -1,0 +1,13 @@
+class Solution {
+public:
+    double average(vector<int>& sal) {
+        double sum=0;
+        sort(sal.begin(),sal.end());
+        for(int i=1;i<sal.size()-1;i++)
+        {
+            sum+=sal[i];
+        }
+        sum/=(sal.size()-2);
+        return sum;
+    }
+};
