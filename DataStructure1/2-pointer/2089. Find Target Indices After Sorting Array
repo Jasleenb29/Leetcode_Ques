@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int binarySearchleftmost(vector<int> &v,int target)
+    {
+        int s=0,e=v.size()-1,lm=INT_MAX;
+        while(s<=e)
+        {
+            int mid=(s+e)/2;
+            if(v[mid]==target)
+            {
+                lm=min(lm,mid);
+                e=mid-1;
+            }
+            
+            else if(v[mid]>target)
+                e=mid-1;
+            else
+                s=mid+1;
+        }
+        return lm;
+    }
+    
+    int binarySearchrightmost(vector<int> &v,int target)
+    {
+        int s=0,e=v.size()-1,rm=INT_MIN;
+        while(s<=e)
+        {
+            int mid=(s+e)/2;
+            if(v[mid]==target)
+            {
+                rm=max(rm,mid);
+                s=mid+1;
+            }
+            
+            else if(v[mid]>target)
+                e=mid-1;
+            else
+                s=mid+1;
+        }
+        return rm;
+    }
+    
+    //Try applying Binary search to reduce the time complexity.
+    
+    
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        vector<int> res;
+        sort(nums.begin(),nums.end());
+        
+        for(int i=binarySearchleftmost(nums,target);i<=binarySearchrightmost(nums,target);i++)
+            res.push_back(i);
+        
+        
+        
+        //int ans=binarySearch(nums,target);
+        
+        /*for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]==target)
+                res.push_back(i);
+        }*/
+        return res;
+            
+        
+        
+    }
+};
